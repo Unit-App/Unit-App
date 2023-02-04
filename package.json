@@ -33,11 +33,9 @@
         "eslint-config-next": "13.1.6",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-react": "^7.31.10",
         "lint-staged": "^13.0.3",
         "prettier": "^2.8.3",
         "prettier-plugin-tailwindcss": "^0.1.13",
-        "react-error-boundary": "^3.1.4",
         "turbo": "^1.7.3",
         "typescript": "^4.9.3"
     },
@@ -78,25 +76,17 @@
                     "value": ":moneybag:"
                 },
                 {
-                    "name": "build \t🚀  Build system config or external dependencies ($compile)",
+                    "name": "build \t🚀  Build system config or external dependencies ",
                     "value": ":rocket:"
                 },
                 {
-                    "name": "ci \t\t🚥  CI config files and scripts ($arch)",
+                    "name": "ci \t\t🚥  CI config files and scripts",
                     "value": ":traffic_light:"
                 },
                 {
                     "name": "revert \t💊  Reverts a previous commit",
                     "value": ":pill:"
                 }
-            ],
-            "scopes": [
-                "$arch",
-                "$compile",
-                "$contrib",
-                "$core",
-                "$data",
-                "$ui"
             ]
         }
     },

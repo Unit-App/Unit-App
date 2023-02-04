@@ -1,9 +1,9 @@
-import { ExpoConfig, ConfigContext } from "@expo/config";
+import { ExpoConfig } from "@expo/config";
 
 const CLERK_PUBLISHABLE_KEY =
   "pk_test_cGlja2VkLXB1Zy0xNy5jbGVyay5hY2NvdW50cy5kZXYk";
 
-const defineConfig = (_ctx: ConfigContext): ExpoConfig => ({
+const defineConfig = (): ExpoConfig => ({
   name: "expo",
   slug: "expo",
   version: "1.0.0",

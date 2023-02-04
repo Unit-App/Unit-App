@@ -1,9 +1,9 @@
+/* eslint-disable no-undef */
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
     root: true,
-
     extends: ["prettier", "eslint:recommended"],
-    plugins: ["@typescript-eslint", "react", "react-hooks", "@tanstack/query"],
+    plugins: ["@typescript-eslint", "@tanstack/query"],
     parser: "@typescript-eslint/parser",
     reportUnusedDisableDirectives: true,
     ignorePatterns: [".eslintrc.js", "**/*.config.js", "**/*.config.cjs", "packages/config/**"],
@@ -31,9 +31,8 @@ module.exports = {
                 "@tanstack/query/exhaustive-deps": "error",
                 "@tanstack/query/prefer-query-object-syntax": "error",
                 "@typescript-eslint/no-unsafe-argument": "warn",
-                "@typescript-eslint/no-unnecessary-condition": 2,
+                "@typescript-eslint/no-unnecessary-condition": "warn",
                 "@typescript-eslint/no-non-null-assertion": "off",
-                "react/react-in-jsx-scope": 0,
                 "@typescript-eslint/no-misused-promises": [
                     "warn",
                     {
@@ -49,21 +48,14 @@ module.exports = {
                 "@typescript-eslint/no-explicit-any": "warn",
                 "@typescript-eslint/no-unused-vars": "warn",
                 "@typescript-eslint/explicit-member-accessibility": ["warn"],
-                "react-hooks/rules-of-hooks": "warn",
-                "react-hooks/exhaustive-deps": "warn",
                 "require-await": "warn",
                 "@typescript-eslint/require-await": "warn",
             },
             extends: [
                 "plugin:@typescript-eslint/recommended",
                 "plugin:@typescript-eslint/recommended-requiring-type-checking",
-                "plugin:@next/next/recommended",
-                "next",
-                "next/core-web-vitals",
                 "plugin:@typescript-eslint/strict",
-                "plugin:react/recommended",
                 "plugin:@tanstack/eslint-plugin-query/recommended",
-                "plugin:react-hooks/recommended",
             ],
         },
     ],

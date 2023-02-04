@@ -29,12 +29,12 @@ const Home: NextPage = () => {
             </Head>
             <main className="flex h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
                 <div className="container flex flex-col items-center justify-center gap-12 px-4 py-8">
-                   <AuthShowcase />
+                    <AuthShowcase />
 
                     <div className="flex h-[60vh] justify-center overflow-y-scroll px-4 text-2xl">
                         {postQuery.data ? (
                             <div className="flex flex-col gap-4">
-                                {postQuery.data?.map((p) => {
+                                {postQuery.data.map((p) => {
                                     return <PostCard key={p.id} post={p} />;
                                 })}
                             </div>

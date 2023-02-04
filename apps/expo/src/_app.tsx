@@ -10,22 +10,22 @@ import { tokenCache } from "./utils/cache";
 import Constants from "expo-constants";
 
 export const App = () => {
-  return (
-    <ClerkProvider
-      publishableKey={Constants.expoConfig?.extra?.CLERK_PUBLISHABLE_KEY}
-      tokenCache={tokenCache}
-    >
-      <SignedIn>
-        <TRPCProvider>
-          <SafeAreaProvider>
-            <HomeScreen />
-            <StatusBar />
-          </SafeAreaProvider>
-        </TRPCProvider>
-      </SignedIn>
-      <SignedOut>
-        <SignInSignUpScreen />
-      </SignedOut>
-    </ClerkProvider>
-  );
+    return (
+        <ClerkProvider
+            publishableKey={Constants.expoConfig?.extra?.CLERK_PUBLISHABLE_KEY as string}
+            tokenCache={tokenCache}
+        >
+            <SignedIn>
+                <TRPCProvider>
+                    <SafeAreaProvider>
+                        <HomeScreen />
+                        <StatusBar />
+                    </SafeAreaProvider>
+                </TRPCProvider>
+            </SignedIn>
+            <SignedOut>
+                <SignInSignUpScreen />
+            </SignedOut>
+        </ClerkProvider>
+    );
 };
