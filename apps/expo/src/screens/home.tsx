@@ -23,22 +23,21 @@ const SignOut = () => {
     );
 };
 
-const PostCard: React.FC<{
-    post: inferProcedureOutput<AppRouter["post"]["all"]>[number];
-}> = ({ post }) => {
+const WorkoutCard: React.FC<{
+    workout: inferProcedureOutput<AppRouter["workout"]["all"]>[number];
+}> = ({ workout }) => {
     return (
         <View className="rounded-lg border-2 border-gray-500 p-4">
-            <Text className="text-xl font-semibold text-[#cc66ff]">{post.title}</Text>
-            <Text className="text-white">{post.content}</Text>
+            <Text className="text-xl font-semibold text-[#cc66ff]">{workout.title}</Text>
         </View>
     );
 };
 
-const CreatePost: React.FC = () => {
+const CreateWorkout: React.FC = () => {
     const utils = trpc.useContext();
-    const { mutate } = trpc.post.create.useMutation({
+    const { mutate } = trpc.workout.create.useMutation({
         async onSuccess() {
-            await utils.post.all.invalidate();
+            await utils.workout.all.invalidate();
         },
     });
 
@@ -62,19 +61,18 @@ const CreatePost: React.FC = () => {
                 onPress={() => {
                     mutate({
                         title,
-                        content,
                     });
                 }}
             >
-                <Text className="font-semibold text-white">Publish post</Text>
+                <Text className="font-semibold text-white">Publish workout</Text>
             </TouchableOpacity>
         </View>
     );
 };
 
 export const HomeScreen = () => {
-    const postQuery = trpc.post.all.useQuery();
-    const [showPost, setShowPost] = React.useState<string | null>(null);
+    const workoutQuery = trpc.workout.all.useQuery();
+    const [showWorkout, setShowWorkout] = React.useState<string | null>(null);
 
     return (
         <SafeAreaView className="bg-[#2e026d] bg-gradient-to-b from-[#2e026d] to-[#15162c]">
@@ -84,28 +82,28 @@ export const HomeScreen = () => {
                 </Text>
 
                 <View className="py-2">
-                    {showPost ? (
+                    {showWorkout ? (
                         <Text className="text-white">
-                            <Text className="font-semibold">Selected post:</Text>
-                            {showPost}
+                            <Text className="font-semibold">Selected workout:</Text>
+                            {showWorkout}
                         </Text>
                     ) : (
-                        <Text className="font-semibold italic text-white">Press on a post</Text>
+                        <Text className="font-semibold italic text-white">Press on a workout</Text>
                     )}
                 </View>
 
                 <FlashList
-                    data={postQuery.data}
+                    data={workoutQuery.data}
                     estimatedItemSize={20}
                     ItemSeparatorComponent={() => <View className="h-2" />}
                     renderItem={(p) => (
-                        <TouchableOpacity onPress={() => setShowPost(p.item.id)}>
-                            <PostCard post={p.item} />
+                        <TouchableOpacity onPress={() => setShowWorkout(p.item.id)}>
+                            <WorkoutCard workout={p.item} />
                         </TouchableOpacity>
                     )}
                 />
 
-                <CreatePost />
+                <CreateWorkout />
                 <SignOut />
             </View>
         </SafeAreaView>
