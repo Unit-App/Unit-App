@@ -45,3 +45,4 @@ yarn-error.log*
 
 # turbo
 .turbo
+packages/api/prisma-trpc-generator-unit
