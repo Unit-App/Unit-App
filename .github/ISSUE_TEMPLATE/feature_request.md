@@ -5,7 +5,6 @@ title: "💡 [REQUEST] - <title>"
 labels: [
 "question"
 ]
-
 ---
 
 body:
