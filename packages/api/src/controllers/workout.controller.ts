@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { TRPCError } from "@trpc/server";
 import { Context } from "../context";
-import { CreateWorkoutInput, FilterQueryInput, ParamsInput, UpdateWorkoutInput } from "../schema/workout.schema";
+import { WorkoutCreateOneSchema, WorkoutUpdateOneSchema } from "../../../db/prisma/generated/schemas";
 import {
     createWorkout,
     deleteWorkout,
@@ -11,7 +11,7 @@ import {
 } from "../services/workout.service";
 import { Prisma, Workout } from "@acme/db";
 
-export const createWorkoutHandler = async ({ input, ctx }: { input: CreateWorkoutInput; ctx: Context }) => {
+export const createWorkoutHandler = async ({ input, ctx }: { input: typeof WorkoutCreateOneSchema; ctx: Context }) => {
     try {
         const workout = await createWorkout({
             lastPreformed: input.lastPreformed,
@@ -75,14 +75,8 @@ export const getWorkoutsHandler = async ({ filterQuery }: { filterQuery: FilterQ
     }
 };
 
-export const updateWorkoutHandler = async ({
-    paramsInput,
-    input,
-}: {
-    paramsInput: ParamsInput;
-    input: UpdateWorkoutInput;
-}) => {
-    const workout = await updateWorkout({ id: paramsInput.workoutId }, input as Prisma.WorkoutUpdateInput);
+export const updateWorkoutHandler = async ({ input }: { input: typeof WorkoutUpdateOneSchema }) => {
+    const workout = await updateWorkout({ id: input.workoutId }, input);
 
     if (!workout) {
         throw new TRPCError({
@@ -99,8 +93,8 @@ export const updateWorkoutHandler = async ({
     };
 };
 
-export const deleteWorkoutHandler = async ({ paramsInput }: { paramsInput: ParamsInput }) => {
-    const workout = await deleteWorkout({ id: paramsInput.workoutId });
+export const deleteWorkoutHandler = async ({ paramsInput }: { paramsInput: Workout }) => {
+    const workout = await deleteWorkout({ id: paramsInput.id });
 
     if (!workout) {
         throw new TRPCError({
