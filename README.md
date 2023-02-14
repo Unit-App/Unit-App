@@ -1,6 +1,4 @@
-[![CI](https://github.com/perkinsjr/t3-turbo-and-clerk/actions/workflows/ci.yml/badge.svg)](https://github.com/perkinsjr/t3-turbo-and-clerk/actions/workflows/ci.yml)
-
-# Create T3 Turbo with Clerk Authentication
+# Unit App Main Repository
 
 ## Clerk Dashboard Setup
 
@@ -14,8 +12,12 @@ It uses [Turborepo](https://turborepo.org/) and contains:
 
 ```
 .github
+  └─ ISSUE TEMPLATE
+  |     └─ Bug Report
+  |     └─ Feature request
   └─ workflows
         └─ CI with pnpm cache setup
+        └─ changeset versioning on prod brach
 .vscode
   └─ Recommended extensions and settings for VSCode users
 apps
@@ -27,8 +29,11 @@ apps
 packages
  ├─ api
  |   └─ tRPC v10 router definition
+ |   └─ prisma trpc generatori cli
  └─ db
      └─ typesafe db-calls using Prisma
+ └─ config
+     └─ tailwind for mobile and web
 ```
 
 ## Quick Start
@@ -40,11 +45,6 @@ To get it running, follow the steps below:
 ```diff
 # Install dependencies
 pnpm i
-
-# In packages/db/prisma update schema.prisma provider to use sqlite
-# or use your own database provider
-- provider = "postgresql"
-+ provider = "sqlite"
 
 # Configure environment variables.
 # There is an `.env.example` in the root directory you can use for reference
@@ -173,6 +173,3 @@ Deploying your Expo application works slightly differently compared to Next.js o
 
 8. Done! Now that you have created your production build, submitted it to the stores, and installed EAS Update, you are ready for anything!
 
-## References
-
-The stack originates from [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo).
