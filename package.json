@@ -21,7 +21,7 @@
         "commit": "git add . && git cz && lint-staged && git push --all && git fetch --all"
     },
     "dependencies": {
-        "@manypkg/cli": "^0.19.2",
+        "@manypkg/cli": "^0.20.0",
         "@next/eslint-plugin-next": "^13.0.2",
         "@tanstack/eslint-plugin-query": "^4.20.2",
         "@types/overlayscrollbars": "^1.12.1",
