@@ -1,0 +1,3 @@
+[submodule "packages/api/prisma-trpc-generator-unit"]
+	path = packages/api/prisma-trpc-generator-unit
+	url = https://github.com/Unit-App/prisma-trpc-generator-unit.git

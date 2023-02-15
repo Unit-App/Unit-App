@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Button, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useAuth } from "@clerk/clerk-expo";
 import { SafeAreaView } from "react-native-safe-area-context";

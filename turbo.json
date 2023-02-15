@@ -30,7 +30,6 @@
             "cache": false
         },
         "dev": {
-            "dependsOn": ["^db-generate"],
             "cache": false
         },
         "build": {
