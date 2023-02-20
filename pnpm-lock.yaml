@@ -13,6 +13,7 @@ importers:
       '@manypkg/cli': ^0.19.2
       '@next/eslint-plugin-next': ^13.0.2
       '@tanstack/eslint-plugin-query': ^4.20.2
+      '@total-typescript/ts-reset': ^0.3.5
       '@types/overlayscrollbars': ^1.12.1
       '@typescript-eslint/eslint-plugin': ^5.50.0
       '@typescript-eslint/parser': ^5.50.0
@@ -32,6 +33,7 @@ importers:
       '@manypkg/cli': 0.19.2
       '@next/eslint-plugin-next': 13.1.6
       '@tanstack/eslint-plugin-query': 4.24.5
+      '@total-typescript/ts-reset': 0.3.5
       '@types/overlayscrollbars': 1.12.1
       '@typescript-eslint/eslint-plugin': 5.50.0_go4drrxstycfikanvu45pi4vgq
       '@typescript-eslint/parser': 5.50.0_4vsywjlpuriuw3tl5oq6zy5a64
@@ -3559,6 +3561,10 @@ packages:
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
+    dev: false
+
+  /@total-typescript/ts-reset/0.3.5:
+    resolution: {integrity: sha512-myLWAVU7pexIN5YP8JijiUy8xisxjnYRjalpJOlMezTLEkafd3hX3B362R24QZ8Rp5GOvBu0R4FFkrX63xsNzA==}
     dev: false
 
   /@trpc/client/10.5.0_@trpc+server@10.5.0:

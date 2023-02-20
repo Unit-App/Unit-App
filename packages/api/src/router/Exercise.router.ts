@@ -1,16 +1,16 @@
-import { t, shieldedProcedure } from "../../trpc";
-import { ExerciseFindUniqueSchema } from "../schemas/findUniqueExercise.schema";
-import { ExerciseFindFirstSchema } from "../schemas/findFirstExercise.schema";
-import { ExerciseFindManySchema } from "../schemas/findManyExercise.schema";
-import { ExerciseCreateOneSchema } from "../schemas/createOneExercise.schema";
-import { ExerciseCreateManySchema } from "../schemas/createManyExercise.schema";
-import { ExerciseDeleteOneSchema } from "../schemas/deleteOneExercise.schema";
-import { ExerciseUpdateOneSchema } from "../schemas/updateOneExercise.schema";
-import { ExerciseDeleteManySchema } from "../schemas/deleteManyExercise.schema";
-import { ExerciseUpdateManySchema } from "../schemas/updateManyExercise.schema";
-import { ExerciseUpsertSchema } from "../schemas/upsertOneExercise.schema";
-import { ExerciseAggregateSchema } from "../schemas/aggregateExercise.schema";
-import { ExerciseGroupBySchema } from "../schemas/groupByExercise.schema";
+import { t, shieldedProcedure } from "../trpc";
+import { ExerciseFindUniqueSchema } from "../generated/schemas/findUniqueExercise.schema";
+import { ExerciseFindFirstSchema } from "../generated/schemas/findFirstExercise.schema";
+import { ExerciseFindManySchema } from "../generated/schemas/findManyExercise.schema";
+import { ExerciseCreateOneSchema } from "../generated/schemas/createOneExercise.schema";
+import { ExerciseCreateManySchema } from "../generated/schemas/createManyExercise.schema";
+import { ExerciseDeleteOneSchema } from "../generated/schemas/deleteOneExercise.schema";
+import { ExerciseUpdateOneSchema } from "../generated/schemas/updateOneExercise.schema";
+import { ExerciseDeleteManySchema } from "../generated/schemas/deleteManyExercise.schema";
+import { ExerciseUpdateManySchema } from "../generated/schemas/updateManyExercise.schema";
+import { ExerciseUpsertSchema } from "../generated/schemas/upsertOneExercise.schema";
+import { ExerciseAggregateSchema } from "../generated/schemas/aggregateExercise.schema";
+import { ExerciseGroupBySchema } from "../generated/schemas/groupByExercise.schema";
 
 export const exercisesRouter = t.router({
     aggregateExercise: shieldedProcedure.input(ExerciseAggregateSchema).query(async ({ ctx, input }) => {

@@ -6,7 +6,7 @@ generator client {
 }
 
 generator trpc {
-  provider          = "node ../api/prisma-trpc-generator-unit/dist/generator.js"
+  provider          = "node ../prisma-trpc-generator-unit/dist/generator.js"
   isGenerateSelect  = true
   isGenerateInclude = true
   binaryTargets     = ["native"]

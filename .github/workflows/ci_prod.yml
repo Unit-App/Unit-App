@@ -2,9 +2,11 @@ name: CI
 
 on:
     pull_request:
-        branches: ["**"]
+        branches:
+            - "prod"
     push:
-        branches: ["**"]
+        branches:
+            - "prod"
 
 env:
     TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -13,7 +15,8 @@ env:
     CLERK_SECRET_KEY: ${{secrets.CLERK_SECRET_KEY}}
 
 jobs:
-    build-lint:
+    build-prod:
+        if: github.event.pull_request.merged
         env:
             DATABASE_URL: ${{secrets.DATABASE_URL}}
         runs-on: ubuntu-latest
