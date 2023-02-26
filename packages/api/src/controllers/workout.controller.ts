@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server";
-import { Prisma } from "@acme/db";
+import { Prisma } from "@unit/db";
 import { Context } from "../context";
 
 export const createManyWorkoutHandler = async ({
@@ -11,7 +11,7 @@ export const createManyWorkoutHandler = async ({
 }) => {
     try {
         const workout = await ctx.prisma.workout.createMany({
-            data: { title: input.title, lastPreformed: input.lastPreformed },
+            data: input,
         });
 
         return {
@@ -21,7 +21,10 @@ export const createManyWorkoutHandler = async ({
             },
         };
     } catch (err) {
-        if (err instanceof TRPCError && err.code === "INTERNAL_SERVER_ERROR") {
+        if (
+            err instanceof Prisma.PrismaClientKnownRequestError ||
+            (err instanceof TRPCError && err.code === "INTERNAL_SERVER_ERROR")
+        ) {
             throw new TRPCError({
                 code: "CONFLICT",
                 message: "Workout with that title already exists",
@@ -50,7 +53,7 @@ export const createWorkoutHandler = async ({ input, ctx }: { input: Prisma.Worko
             },
         };
     } catch (err) {
-        if (err instanceof TRPCError && err.code === "INTERNAL_SERVER_ERROR") {
+        if (err instanceof TRPCError || err instanceof Prisma.PrismaClientKnownRequestError) {
             throw new TRPCError({
                 code: "CONFLICT",
                 message: "Workout with that title already exists",
@@ -61,26 +64,29 @@ export const createWorkoutHandler = async ({ input, ctx }: { input: Prisma.Worko
 };
 
 export const getWorkoutHandler = async ({ input, ctx }: { input: Prisma.WorkoutWhereUniqueInput; ctx: Context }) => {
-    const workout = await ctx.prisma.workout.findUniqueOrThrow({
-        where: {
-            id: input.id,
-        },
-        include: { exercises: true },
-    });
-
-    if (!workout) {
-        throw new TRPCError({
-            code: "NOT_FOUND",
-            message: "Workout with that ID not found",
+    try {
+        const workout = await ctx.prisma.workout.findUnique({
+            where: {
+                id: input.id,
+            },
+            include: { exercises: true },
         });
-    }
 
-    return {
-        status: "success",
-        data: {
-            workout,
-        },
-    };
+        return {
+            status: "success",
+            data: {
+                workout,
+            },
+        };
+    } catch (err) {
+        if (err instanceof TRPCError || err instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "Workout with that ID not found",
+            });
+        }
+        throw err;
+    }
 };
 
 export const getWorkoutsHandler = async ({ input, ctx }: { input: Prisma.WorkoutFindManyArgs; ctx: Context }) => {
@@ -99,7 +105,7 @@ export const getWorkoutsHandler = async ({ input, ctx }: { input: Prisma.Workout
             },
         };
     } catch (err) {
-        if (err instanceof TRPCError && err.code === "INTERNAL_SERVER_ERROR") {
+        if (err instanceof Prisma.PrismaClientKnownRequestError || err instanceof TRPCError) {
             throw new TRPCError({
                 code: "INTERNAL_SERVER_ERROR",
                 message: err.message,
@@ -115,29 +121,32 @@ export const updateWorkoutHandler = async ({
     input: Prisma.WorkoutUncheckedUpdateInput;
     ctx: Context;
 }) => {
-    const workout = await ctx.prisma.workout.update({
-        where: { id: input.id as string | undefined },
-        data: {
-            title: input.title,
-            lastPreformed: input.lastPreformed,
-        },
+    try {
+        const workout = await ctx.prisma.workout.update({
+            where: { id: input.id as string | undefined },
+            data: {
+                title: input.title,
+                lastPreformed: input.lastPreformed,
+            },
 
-        include: { exercises: true },
-    });
-
-    if (!workout) {
-        throw new TRPCError({
-            code: "NOT_FOUND",
-            message: "Workout with that ID not found",
+            include: { exercises: true },
         });
-    }
 
-    return {
-        status: "success",
-        data: {
-            workout,
-        },
-    };
+        return {
+            status: "success",
+            data: {
+                workout,
+            },
+        };
+    } catch (err) {
+        if (err instanceof TRPCError || err instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "Workout with that ID not found",
+            });
+        }
+        throw err;
+    }
 };
 
 export const updateManyWorkoutHandler = async ({
@@ -147,57 +156,66 @@ export const updateManyWorkoutHandler = async ({
     input: Prisma.WorkoutUpdateManyMutationInput;
     ctx: Context;
 }) => {
-    const workout = await ctx.prisma.workout.updateMany({
-        where: { id: input.id as string | undefined | Prisma.StringFilter },
-        data: {
-            title: input.title,
-            lastPreformed: input.lastPreformed,
-        },
-    });
-
-    if (!workout) {
-        throw new TRPCError({
-            code: "NOT_FOUND",
-            message: "Workout with that ID not found",
+    try {
+        const workout = await ctx.prisma.workout.updateMany({
+            where: { id: input.id as string | undefined | Prisma.StringFilter },
+            data: {
+                title: input.title,
+                lastPreformed: input.lastPreformed,
+            },
         });
-    }
 
-    return {
-        status: "success",
-        data: {
-            workout,
-        },
-    };
+        return {
+            status: "success",
+            data: {
+                workout,
+            },
+        };
+    } catch (err) {
+        if (err instanceof TRPCError || err instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "Workout with that ID not found",
+            });
+        }
+        throw err;
+    }
 };
 
 export const deleteWorkoutHandler = async ({ input, ctx }: { input: Prisma.WorkoutWhereUniqueInput; ctx: Context }) => {
-    const workout = await ctx.prisma.workout.delete({ where: { id: input.id } });
+    try {
+        const workout = await ctx.prisma.workout.delete({ where: { id: input.id } });
 
-    if (!workout) {
-        throw new TRPCError({
-            code: "NOT_FOUND",
-            message: "Workout with that ID not found",
-        });
+        return {
+            status: "success",
+            data: workout,
+        };
+    } catch (err) {
+        if (err instanceof TRPCError || err instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "Workout with that ID not found",
+            });
+        }
+        throw err;
     }
-
-    return {
-        status: "success",
-        data: workout,
-    };
 };
 
 export const deleteManyWorkoutHandler = async ({ input, ctx }: { input: Prisma.WorkoutWhereInput; ctx: Context }) => {
-    const workout = await ctx.prisma.workout.deleteMany({ where: input });
+    try {
+        const workout = await ctx.prisma.workout.deleteMany({ where: input });
 
-    if (!workout) {
-        throw new TRPCError({
-            code: "NOT_FOUND",
-            message: "Workouts with that IDs not found",
-        });
+        return {
+            status: "success",
+            data: workout,
+        };
+    } catch (err) {
+        if (err instanceof TRPCError || err instanceof Prisma.PrismaClientKnownRequestError) {
+            throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "Workouts with that IDs not found",
+            });
+        }
+        throw err;
     }
-
-    return {
-        status: "success",
-        data: workout,
-    };
 };

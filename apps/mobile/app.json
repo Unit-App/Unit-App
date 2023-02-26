@@ -1,0 +1,34 @@
+{
+    "expo": {
+        "name": "eas-tests-example",
+        "slug": "eas-tests-example",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/icon.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.dsokal.eas-tests-example"
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/icon.png",
+                "backgroundColor": "#FFFFFF"
+            },
+            "package": "dev.expo.dsokal.test.example"
+        },
+        "web": {
+            "favicon": "./assets/icon.png"
+        },
+        "plugins": ["@config-plugins/detox"]
+    }
+}

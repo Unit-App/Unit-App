@@ -17,6 +17,7 @@ generator trpc {
   contextPath    = "../../api/src/context"
   trpcOptionsPath = "../../api/src/trpc"
 }
+
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")

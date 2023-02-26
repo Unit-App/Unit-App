@@ -44,5 +44,4 @@ export const workoutsRouter = t.router({
     updateOneWorkout: shieldedProcedure
         .input(WorkoutUncheckedUpdateInputObjectSchema)
         .mutation(async ({ ctx, input }) => await updateWorkoutHandler({ input, ctx })),
-
 });

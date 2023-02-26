@@ -46,3 +46,6 @@ yarn-error.log*
 # turbo
 .turbo
 packages/api/prisma-trpc-generator-unit
+/test-results/
+/playwright-report/
+/playwright/.cache/
