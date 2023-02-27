@@ -2,8 +2,8 @@
     "compilerOptions": {
         "target": "es2017",
         "lib": ["dom", "dom.iterable", "esnext"],
-
         "allowJs": true,
+        "strictNullChecks": true,
         "skipLibCheck": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
@@ -15,8 +15,45 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
-        "noUncheckedIndexedAccess": true
+        "noUncheckedIndexedAccess": true,
+        "alwaysStrict": true,
+        "downlevelIteration": true,
+        "inlineSourceMap": true,
+        "noEmitOnError": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": false,
+        "noImplicitReturns": false,
+        "noImplicitAny": true,
+        "noUnusedParameters": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
+        "stripInternal": true,
+        "useDefineForClassFields": true,
+        "useUnknownInCatchVariables": false
+        // "baseUrl": ".",
+        // "paths": {
+        //     "@/components/*": ["./src/components/*"],
+        //     "@/pages/*": ["./src/pages/*"]
+        // }
     },
-    "include": [".eslintrc.cjs"],
+    "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.css",
+        ".eslintrc",
+        "**/*.d.ts",
+        "**/next.config.mjs",
+        "**/tailwind.config.cjs",
+        "**/postcss.config.cjs",
+        "**/next.config.mjs"
+    ],
+    "exclude": ["node_modules", "**/*.js"],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "commonjs"
+        }
+    },
+    //"typeRoots": ["./types/*.ts"],
     "extends": "expo/tsconfig.base"
 }

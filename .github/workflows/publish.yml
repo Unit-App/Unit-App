@@ -7,7 +7,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-    build:
+    build-publish:
         if: github.event.pull_request.merged
         runs-on: ubuntu-latest
         steps:
@@ -32,7 +32,7 @@ jobs:
               run: pnpm check
 
             - name: Check for errors
-              run: pnpm run build
+              run: pnpm run relise
 
             - name: Create Version PR or Publish to NPM
               id: changesets

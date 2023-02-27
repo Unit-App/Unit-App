@@ -6,7 +6,7 @@ generator client {
 }
 
 generator trpc {
-  provider          = "node ../api/prisma-trpc-generator-unit/dist/generator.js"
+  provider          = "node ../prisma-trpc-generator-unit/dist/generator.js"
   isGenerateSelect  = true
   isGenerateInclude = true
   binaryTargets     = ["native"]
@@ -17,6 +17,7 @@ generator trpc {
   contextPath    = "../../api/src/context"
   trpcOptionsPath = "../../api/src/trpc"
 }
+
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
