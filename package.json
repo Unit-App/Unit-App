@@ -30,7 +30,7 @@
         "@manypkg/cli": "^0.20.0",
         "@next/eslint-plugin-next": "^13.0.2",
         "@tanstack/eslint-plugin-query": "^4.20.2",
-        "@total-typescript/ts-reset": "^0.3.5",
+        "@total-typescript/ts-reset": "^0.4.2",
         "@types/overlayscrollbars": "^1.12.1",
         "@typescript-eslint/eslint-plugin": "^5.50.0",
         "@typescript-eslint/parser": "^5.50.0",
